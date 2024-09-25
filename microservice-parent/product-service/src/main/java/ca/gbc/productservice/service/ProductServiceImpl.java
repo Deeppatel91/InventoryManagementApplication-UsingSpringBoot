@@ -30,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
         Product product = Product.builder()
                 .name(productRequest.name())
                 .description(productRequest.description())
+                .price(productRequest.price())
                 .build();
 
         //persist a product
@@ -56,6 +57,7 @@ public class ProductServiceImpl implements ProductService {
                 product.getPrice());
 
     }
+
     @Override
     public String updateProduct(String id, ProductRequest productRequest) {
         log.debug("Updating a product with id {}", id);
