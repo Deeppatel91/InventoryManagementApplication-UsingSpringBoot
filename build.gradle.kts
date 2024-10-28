@@ -9,9 +9,10 @@ version = "0.0.1-SNAPSHOT"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion.set(JavaLanguageVersion.of(21)) // Adjust if you use another version
     }
 }
+
 
 repositories {
     mavenCentral()
@@ -35,3 +36,4 @@ dependencies {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+

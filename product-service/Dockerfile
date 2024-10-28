@@ -2,7 +2,7 @@
 #Buid stage
 #--------
 
-FROM gradle:8-jdk22-alpine AS builder
+FROM gradle:8-jdk21-alpine AS builder
 
 COPY --chown=gradle:gradle . /home/gradle/src/
 
@@ -13,7 +13,7 @@ RUN gradle build -x test
 #--------
 #Package stage
 #--------
-FROM openjdk:22-jdk
+FROM openjdk:21-jdk
 
 RUN mkdir /app
 
