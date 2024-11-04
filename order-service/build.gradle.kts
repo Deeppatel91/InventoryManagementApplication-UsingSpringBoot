@@ -1,6 +1,6 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.3.3" // Match this version with the one in the classpath
+    id("org.springframework.boot") version "3.3.3"
     id("io.spring.dependency-management") version "1.1.6"
 }
 
@@ -33,15 +33,21 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
-
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    implementation("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
-    testImplementation("io.rest-assured:rest-assured:5.3.0") // Add RestAssured dependency for testing
+    testImplementation("io.rest-assured:rest-assured:5.3.0") // RestAssured dependency for testing
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+dependencyManagement {
+    imports {
+        mavenBom("org.springframework.cloud:spring-cloud-dependencies:2023.0.3")
+    }
+}
 
 tasks.withType<Test> {
     useJUnitPlatform()
