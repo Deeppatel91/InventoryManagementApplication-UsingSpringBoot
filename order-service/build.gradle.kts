@@ -40,6 +40,8 @@ dependencies {
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
     testImplementation("io.rest-assured:rest-assured:5.3.0") // RestAssured dependency for testing
+    runtimeOnly("org.postgresql:postgresql")
+
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

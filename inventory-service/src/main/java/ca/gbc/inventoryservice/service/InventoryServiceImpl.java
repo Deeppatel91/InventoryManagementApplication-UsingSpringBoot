@@ -1,7 +1,6 @@
 package ca.gbc.inventoryservice.service;
 
-
-import ca.gbc.inventoryservice.InventoryRepository;
+import ca.gbc.inventoryservice.repository.InventoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -13,12 +12,8 @@ public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
 
     @Override
-    public boolean isInStock(String skuCode, Integer quantity){
-
+    public boolean isInStock(String skuCode, Integer quantity) {
         return inventoryRepository
                 .existsBySkuCodeAndQuantityGreaterThanEqual(skuCode, quantity);
     }
-
-
-
 }
