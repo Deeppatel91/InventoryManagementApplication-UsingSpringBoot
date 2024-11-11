@@ -19,15 +19,10 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true) // Order numbers are typically unique and required
     private String orderNumber;
-
-    @Column(nullable = false)
     private String skuCode;
-
-    @Column(nullable = false, precision = 10, scale = 2) // Precision for currency handling
     private BigDecimal price;
-
-    @Column(nullable = false)
     private Integer quantity;
+
+
 }

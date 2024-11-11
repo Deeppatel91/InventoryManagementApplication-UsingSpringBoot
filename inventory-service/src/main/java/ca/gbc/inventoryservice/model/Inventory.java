@@ -1,5 +1,6 @@
 package ca.gbc.inventoryservice.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "t_inventory")
+@Table(name= "t_inventory")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,9 +17,9 @@ public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "sku_code")
-    private String skuCode;
-
+    private String sku_code;
     private Integer quantity;
+
+
+
 }

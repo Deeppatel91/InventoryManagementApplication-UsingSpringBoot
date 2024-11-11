@@ -2,80 +2,65 @@ package ca.gbc.orderservice;
 
 import ca.gbc.orderservice.stub.InventoryClientStub;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.ActiveProfiles;
-import com.github.tomakehurst.wiremock.WireMockServer;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
+import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
-import static io.restassured.RestAssured.given;
-import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
-import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test") // Use the test profile
-public class OrderServiceApplicationTests {
+@Testcontainers
+class OrderServiceApplicationTests {
+
+    @Container
+    @ServiceConnection
+    static PostgreSQLContainer<?> postgresSQLContainer = new PostgreSQLContainer<>("postgres:15-alpine");
+
 
     @LocalServerPort
     private Integer port;
 
-    private static WireMockServer wireMockServer;
-
-    @Value("${inventory.service.url}")
-    private String inventoryServiceUrl;
-
-    @BeforeAll
-    static void initWireMock() {
-        // Initialize WireMock with a dynamic port
-        wireMockServer = new WireMockServer(wireMockConfig().dynamicPort());
-        wireMockServer.start();
-
-        // Set the WireMock server port to a system property that Spring will use in the test profile
-        System.setProperty("wiremock.server.port", String.valueOf(wireMockServer.port()));
-    }
-
-    @AfterAll
-    static void stopWireMock() {
-        if (wireMockServer != null) {
-            wireMockServer.stop();
-        }
-    }
-
     @BeforeEach
-    void setupRestAssured() {
+    void setup() {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
+
+
+    }
+
+    static {
+        postgresSQLContainer.start();
     }
 
     @Test
-    void shouldPlaceOrder() {
-        String skuCode = "samsung_tv_2024";
-        Integer quantity = 10;
+    void shouldSubmitOrder() {
+        String submitOrderJson = """
+        {
+            "skuCode": "samsung_tv_2024",
+            "price": 5000,
+            "quantity": 10
+        }
+        """;
 
-        // Stub the inventory call using WireMock
-        InventoryClientStub.stubInventoryCall(skuCode, quantity); // Set up WireMock stub
+        InventoryClientStub.stubInventoryCall("samsung_tv_2024", 10);
 
-        String orderJson = """
-            {
-                "orderNumber": "12345",
-                "skuCode": "%s",
-                "price": 500.00,
-                "quantity": %d
-            }
-        """.formatted(skuCode, quantity);
-
-        // Place order and verify response
-        given()
+        var responseBodyString = RestAssured.given()
                 .contentType("application/json")
-                .body(orderJson)
+                .body(submitOrderJson)
                 .when()
                 .post("/api/order")
                 .then()
+                .log().all()
                 .statusCode(201)
-                .body(equalTo("Order Placed Successfully"));
+                .extract()
+                .body().asString();
+
+        assertThat(responseBodyString, Matchers.is("Order Placed Successfully"));
     }
 }

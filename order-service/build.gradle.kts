@@ -41,7 +41,12 @@ dependencies {
     testImplementation("org.testcontainers:postgresql")
     testImplementation("io.rest-assured:rest-assured:5.3.0") // RestAssured dependency for testing
     runtimeOnly("org.postgresql:postgresql")
-
+    testImplementation ("org.springframework.boot:spring-boot-starter-test")
+    testImplementation ("org.testcontainers:junit-jupiter")
+    testImplementation ("org.testcontainers:postgresql")
+    testImplementation ("io.rest-assured:rest-assured")
+    testImplementation ("jakarta.servlet:jakarta.servlet-api:5.0.0")
+    testImplementation ("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 

@@ -11,37 +11,34 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+
 @Slf4j
 @Service
 @RequiredArgsConstructor
 @Transactional
 public class OrderServiceImpl implements OrderService {
-
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
-
     @Override
     public void placeOrder(OrderRequest orderRequest) {
-        try {
-            log.info("Placing order with SKU: {}, Quantity: {}", orderRequest.skuCode(), orderRequest.quantity());
-            boolean isProductInStock = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
 
-            if (isProductInStock) {
-                Order order = Order.builder()
-                        .orderNumber(UUID.randomUUID().toString())
-                        .price(orderRequest.price())
-                        .skuCode(orderRequest.skuCode())
-                        .quantity(orderRequest.quantity())
-                        .build();
 
-                orderRepository.save(order);
-                log.info("Order saved successfully: {}", order);
-            } else {
-                throw new RuntimeException("Product with SKU " + orderRequest.skuCode() + " is not in stock");
-            }
-        } catch (Exception e) {
-            log.error("Error while placing order", e);
-            throw new RuntimeException("Error processing order", e);
+        var isProductInStock = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
+
+
+        if (isProductInStock) {
+            Order order = Order.builder()
+                    .orderNumber(UUID.randomUUID().toString())
+                    .price(orderRequest.price())
+                    .skuCode(orderRequest.skuCode())
+                    .quantity(orderRequest.quantity())
+                    .build();
+
+            orderRepository.save(order);
+
+        }
+        else{
+            throw new RuntimeException("product with skuCode"+ orderRequest.skuCode()+ "is not in stock");
         }
     }
 }
