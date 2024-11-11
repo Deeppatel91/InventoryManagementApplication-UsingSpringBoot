@@ -48,6 +48,8 @@ dependencies {
     testImplementation ("jakarta.servlet:jakarta.servlet-api:5.0.0")
     testImplementation ("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation ("org.springframework.cloud:spring-cloud-starter-contract-stub-runner")
+    testImplementation ("com.github.tomakehurst:wiremock-jre8:2.35.0")
 }
 
 dependencyManagement {

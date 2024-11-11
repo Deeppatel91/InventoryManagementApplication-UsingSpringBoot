@@ -24,23 +24,40 @@ repositories {
 }
 
 dependencies {
+    // Spring Boot dependencies
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
+
+    // Lombok for reducing boilerplate code
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    runtimeOnly("org.postgresql:postgresql")
     annotationProcessor("org.projectlombok:lombok")
+
+    // PostgreSQL JDBC driver for database connection
+    runtimeOnly("org.postgresql:postgresql")
+
+    // Development tools
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    // OpenFeign for communication between services
+    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+
+    // Test dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.boot:spring-boot-testcontainers")
     testImplementation("org.testcontainers:junit-jupiter")
     testImplementation("org.testcontainers:postgresql")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    // Spring Cloud OpenFeign for Feign Client support
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+    // RestAssured for API testing
+    testImplementation("io.rest-assured:rest-assured:5.3.0")
+
+    // WireMock for creating stubbed HTTP responses in tests
+    testImplementation("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
+
+    // JUnit platform launcher
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 dependencyManagement {
