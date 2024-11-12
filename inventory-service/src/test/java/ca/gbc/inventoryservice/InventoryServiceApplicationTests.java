@@ -45,7 +45,6 @@ class InventoryServiceApplicationTests {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
 
-        // Add a test inventory item
         if (!inventoryRepository.existsBySkuCodeAndQuantityGreaterThanEqual("sample_sku", 10)) {
             Inventory inventoryItem = new Inventory(null, "sample_sku", 20);
             inventoryRepository.save(inventoryItem);
