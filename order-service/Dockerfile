@@ -19,7 +19,7 @@ RUN mkdir /app
 
 COPY --from=builder /home/gradle/src/build/libs/*.jar /app/order-service.jar
 
-# Set environment variables for PostgreSQL
+
 ENV SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/order-service \
     SPRING_DATASOURCE_USERNAME=admin \
     SPRING_DATASOURCE_PASSWORD=password

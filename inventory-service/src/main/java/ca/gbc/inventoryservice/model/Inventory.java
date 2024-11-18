@@ -17,6 +17,6 @@ public class Inventory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String skuCode; // renamed from sku_code to skuCode
+    private String skuCode;
     private Integer quantity;
 }

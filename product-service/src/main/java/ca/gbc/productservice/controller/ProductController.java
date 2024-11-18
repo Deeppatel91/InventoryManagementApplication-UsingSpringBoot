@@ -48,7 +48,6 @@ public class ProductController {
         String updatedProductId = productService.updateProduct(productId,productRequest);
 
 
-        //sets the local header attribute
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/product"+ updatedProductId);
         return new ResponseEntity<>(headers, HttpStatus.NO_CONTENT);

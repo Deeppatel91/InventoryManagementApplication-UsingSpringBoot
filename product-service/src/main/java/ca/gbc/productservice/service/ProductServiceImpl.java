@@ -33,7 +33,6 @@ public class ProductServiceImpl implements ProductService {
                 .price(productRequest.price())
                 .build();
 
-        //persist a product
         productRepository.save(product);
 
         log.info("Product {} is saved", product.getId());
@@ -46,7 +45,6 @@ public class ProductServiceImpl implements ProductService {
     public List<ProductResponse> getAllProducts() {
         log.debug("Returning a list product");
         List<Product> products = productRepository.findAll();
-        //return products.stream().map(product -> mapToProductResponse(product)).toList();
         return products.stream().map(this::mapToProductResponse).toList();
     }
 

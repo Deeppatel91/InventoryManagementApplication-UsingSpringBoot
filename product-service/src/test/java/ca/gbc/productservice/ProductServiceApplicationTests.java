@@ -15,12 +15,11 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@Testcontainers // Enables automatic start/stop of containers for each test
+@Testcontainers
 class ProductServiceApplicationTests {
 
-    // This annotation is used in combination with TestContainers to automatically configure
-    // the connection to the test MongoDB Container
-    @Container // Ensures the container lifecycle is managed automatically
+
+    @Container
     @ServiceConnection
     static MongoDBContainer mongoDBContainer = new MongoDBContainer("mongo:latest");
 
