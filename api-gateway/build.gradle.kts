@@ -26,38 +26,28 @@ repositories {
 extra["springCloudVersion"] = "2023.0.3"
 
 dependencies {
-//    // Spring Boot and Spring Cloud Gateway
-//    implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
-//   // implementation("org.springframework.boot:spring-boot-starter-web") // Add for MVC support
-//    implementation("org.springframework.boot:spring-boot-oauth2-resource-server:3.3.3")
-//    // Optional: Eureka for Service Discovery
-////    implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-client")
-//    implementation("org.springframework.boot:spring-boot-starter-security")
-//
-//   // implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
-//    implementation("org.springframework.boot:spring-boot-starter-web") // Use Spring MVC
-//    // Lombok
-//    compileOnly("org.projectlombok:lombok")
-//    annotationProcessor("org.projectlombok:lombok")
-//
-//    // Testing
-//    testImplementation("org.springframework.boot:spring-boot-starter-test")
-//   // testImplementation("org.springframework.cloud:spring-cloud-starter-test") // Spring Cloud-specific tests
-//    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
-// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
-    testImplementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
+    // Spring Boot and Spring Cloud Gateway
     implementation("org.springframework.cloud:spring-cloud-starter-gateway-mvc")
-    compileOnly("org.projectlombok:lombok")
+    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // SpringDoc for Swagger/OpenAPI
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
+    testImplementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
+
     compileOnly("jakarta.servlet:jakarta.servlet-api:6.1.0")
+    // Lombok for reducing boilerplate code
+    compileOnly("org.projectlombok:lombok")
     annotationProcessor("org.projectlombok:lombok")
+
+    implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.1.2")
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Testing dependencies
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("org.springframework.boot:spring-boot-starter-oauth2-resource-server:3.3.3")
-    implementation("org.springframework.boot:spring-boot-starter-security:3.3.3")
-
-
 }
 
 dependencyManagement {
@@ -65,7 +55,6 @@ dependencyManagement {
         mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
     }
 }
-
 
 tasks.withType<Test> {
     useJUnitPlatform()

@@ -30,9 +30,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
-    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webflux-ui
+
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
-// https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-starter-webmvc-api
     testImplementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
 
     // Lombok for reducing boilerplate code

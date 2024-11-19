@@ -42,7 +42,7 @@ public class Routes {
                     try{
                         ServerResponse response = HandlerFunctions.http(productServiceUrl).handle(request);
                         log.info("Response status: {}", response.statusCode());
-                    return response;
+                        return response;
 
                     }catch(Exception e){
                         log.error("Error occurred while routing to: {}", e.getMessage(), e);
@@ -149,5 +149,3 @@ public class Routes {
     }
 
 }
-
-
