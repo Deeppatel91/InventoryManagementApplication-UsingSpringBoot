@@ -53,7 +53,7 @@ class OrderServiceApplicationTests {
         RestAssured.baseURI = "http://localhost";
         RestAssured.port = port;
 
-        // Mock the InventoryClient to simulate stock availability
+
         Mockito.when(inventoryClient.isInStock(anyString(), anyInt())).thenReturn(true);
     }
 

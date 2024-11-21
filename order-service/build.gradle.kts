@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-devtools")
 
+
     // PostgreSQL and Flyway
     runtimeOnly("org.postgresql:postgresql")
     implementation("org.flywaydb:flyway-core")
@@ -45,6 +46,9 @@ dependencies {
     testImplementation("jakarta.servlet:jakarta.servlet-api:5.0.0")
     testImplementation("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
     implementation("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
+    implementation("org.flywaydb:flyway-core")
+    implementation("org.flywaydb:flyway-database-postgresql")
+
     // SpringDoc for OpenAPI/Swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     testImplementation("org.springdoc:springdoc-openapi-starter-webmvc-api:2.6.0")
