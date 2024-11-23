@@ -1,10 +1,9 @@
-# -----------------------------------------------
 # 1. Start containers in detached mode without rebuilding existing images:
 #    docker-compose -p comp3095-microservices-ecommerce -f docker-compose.yml up -d
 #
 # 2. Force rebuild of all images before starting containers:
 #    docker-compose -p comp3095-microservices-ecommerce -f docker-compose.yml up -d --build
-# -----------------------------------------------
+
 
 version: '3.9'
 
