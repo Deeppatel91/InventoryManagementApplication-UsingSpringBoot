@@ -25,6 +25,7 @@ public class SecurityConfig {
             "/api-docs/**",
             "/aggregate/**"
     };
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
 

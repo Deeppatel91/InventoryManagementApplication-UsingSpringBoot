@@ -2,11 +2,13 @@ package ca.gbc.orderservice.service;
 
 import ca.gbc.orderservice.client.InventoryClient;
 import ca.gbc.orderservice.dto.OrderRequest;
+import ca.gbc.orderservice.event.OrderPlacedEvent;
 import ca.gbc.orderservice.model.Order;
 import ca.gbc.orderservice.repository.OrderRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -19,8 +21,15 @@ import java.util.UUID;
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
     private final InventoryClient inventoryClient;
+
+
+
+    private final KafkaTemplate<String, OrderPlacedEvent> kafkaTemplate;
+
+
+
     @Override
-    public void placeOrder(OrderRequest orderRequest) {
+    public boolean placeOrder(OrderRequest orderRequest) {
 
 
         var isProductInStock = inventoryClient.isInStock(orderRequest.skuCode(), orderRequest.quantity());
@@ -36,9 +45,16 @@ public class OrderServiceImpl implements OrderService {
 
             orderRepository.save(order);
 
+
+            OrderPlacedEvent orderPlacedEvent =
+                    new OrderPlacedEvent(order.getOrderNumber(), orderRequest.userDetails().email());
+            log.info("Start - Sending OrderPlacedEvent {} to Kafka topic order--placed", orderPlacedEvent);
+            kafkaTemplate.send("order-placed", orderPlacedEvent);
+            log.info("Complete - Sent OrderPlacedEvent {} to Kafka topic order--placed", orderPlacedEvent);
         }
         else{
-            throw new RuntimeException("product with skuCode"+ orderRequest.skuCode()+ "is not in stock");
+            throw new RuntimeException("product with skuCode"+ orderRequest.skuCode()+ "is not in stock due to Inventory threshold limits reached");
         }
+        return isProductInStock;
     }
 }

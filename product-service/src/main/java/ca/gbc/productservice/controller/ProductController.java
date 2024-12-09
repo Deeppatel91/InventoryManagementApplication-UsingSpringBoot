@@ -36,9 +36,18 @@ public class ProductController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<ProductResponse> getALlProducts(){
+
+        /*try {
+
+            Thread.sleep(5000);
+        }catch (InterruptedException e){
+            throw new RuntimeException(e);
+        }*/
+
+
+
         return productService.getAllProducts();
     }
-    //http://localhost:8080/api/product/
 
 
     @PutMapping("/{productId}")

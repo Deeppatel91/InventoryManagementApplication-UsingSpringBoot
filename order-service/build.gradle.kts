@@ -48,6 +48,12 @@ dependencies {
     implementation("com.github.tomakehurst:wiremock-jre8-standalone:2.35.0")
     implementation("org.flywaydb:flyway-core")
     implementation("org.flywaydb:flyway-database-postgresql")
+    implementation("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.1.2")
+    implementation("org.springframework.kafka:spring-kafka:3.3.0")
+
+    testImplementation("org.springframework.kafka:spring-kafka-test:3.3.0")
+
+    testImplementation("org.testcontainers:kafka:1.20.4")
 
     // SpringDoc for OpenAPI/Swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
