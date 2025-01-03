@@ -1,50 +1,58 @@
-# ICE3
+# 📦 Inventory Management Application Using Spring Boot 🚀
 
-## Overview
-This project demonstrates a containerized network environment utilizing Docker, API Gateway, Kafka, circuit-breaker patterns, Swagger UI, and Keycloak for authentication. Postman is used for testing.
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
----
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+![Keycloak](https://img.shields.io/badge/Keycloak-FF6C37?style=for-the-badge&logo=keycloak&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
-## Features Demonstrated
+## 🌟 Overview
 
-| **Feature**               | **Description**                                    | **Demonstration**                                                                                           | **Completed** |
-|---------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------------------------|---------------|
-| **Containerized Network**   | A Dockerized container environment.               | Docker containers running interconnected microservices (e.g., `api-gateway`, `product-service`, `order-service`). | ✅             |
-| **Postman Testing**        | API testing using Postman.                        | API endpoints tested for functionality, errors, and latency.                                               | ✅             |
-| **Circuit-Breaker**        | Handling service unavailability and retries.      | - Failed response (service down).<br> - Latent response simulation.<br> - Retry mechanism demonstration.   | ✅             |
-| **Kafka Integration**      | Event-driven architecture with Apache Kafka.      | - `order-service` acting as an event producer.<br> - `notification-service` acting as an event consumer.<br> - Mailtrap used to demonstrate email notification. | ✅             |
-| **Swagger UI**             | API documentation and testing.                    | - Swagger UI hosted for all services.<br> - View, test, and document APIs directly via the interface.      | ✅             |
-| **Keycloak Integration**   | Centralized authentication and authorization.     | - Keycloak configured for managing users and roles.<br> - Services secured using role-based access control. | ✅             |
-| **API Gateway**            | Centralized access to all microservices.          | - Unified entry point for clients.<br> - Route requests to `product-service`, `order-service`, etc.        | ✅             |
+The **Inventory Management Application** is a robust, microservices-based application built using **Spring Boot** and **Java**. Designed to streamline inventory management, it provides features like product management, stock tracking, and order processing. The application is containerized using **Docker** for easy deployment and uses **PostgreSQL** and **MongoDB** for reliable data storage. APIs are documented using **Swagger**, and **Postman** is used for testing. Security is implemented using **Keycloak OAuth 2.0**, and the project is managed with **GitHub** for version control.
 
----
-
-## Detailed Demonstrations
-
-| **Scenario**              | **Description**                       | **Steps & Tools Used**                                                                 | **Completed** |
-|----------------------------|---------------------------------------|---------------------------------------------------------------------------------------|---------------|
-| **Failed Response**        | Simulate a service-down scenario.     | - Shut down `product-service`.<br> - Postman request triggers circuit-breaker response. | ✅             |
-| **Latent Response**        | Simulate slow service response.       | - Introduce latency in `order-service`.<br> - Observe fallback response via circuit-breaker. | ✅             |
-| **Retry Mechanism**        | Demonstrate circuit-breaker retry.    | - Configure retry settings.<br> - Postman to test retries after failure.              | ✅             |
-| **Kafka Producer**         | `order-service` produces events.      | - Place an order.<br> - Kafka topic receives event.                                   | ✅             |
-| **Kafka Consumer**         | `notification-service` consumes events. | - Event triggers email notification.<br> - View email in Mailtrap.                    | ✅             |
-| **Swagger UI**             | View and test APIs interactively.     | - Open Swagger UI for `product-service` and `order-service`.<br> - Test endpoints directly. | ✅             |
-| **Keycloak Authentication**| Secure endpoints with Keycloak.       | - Authenticate using Keycloak.<br> - Access secured API endpoints.                   | ✅             |
-| **API Gateway**            | Centralized routing.                  | - Route client requests through the API Gateway.<br> - Test unified access points.    | ✅             |
+This project demonstrates a **containerized network environment** utilizing **Docker**, **API Gateway**, **Kafka**, **circuit-breaker patterns**, **Swagger UI**, and **Keycloak** for authentication. It showcases a microservices architecture with features like event-driven communication, fault tolerance, and centralized API documentation.
 
 ---
 
-## Tools & Technologies
-- **Docker**: Containerized microservices.
-- **Postman**: API testing.
-- **Apache Kafka**: Event-driven messaging.
-- **Resilience4j**: Circuit-breaker implementation in `api-gateway` and `order-service`.
-- **Mailtrap**: Email testing.
-- **Swagger UI**: API documentation and testing.
-- **Keycloak**: Authentication and authorization.
-- **API Gateway**: Unified access to microservices with circuit-breaker patterns.
+## 🚀 Features
 
+- **📦 Product Management:** Add, update, delete, and view products in the inventory.
+- **📊 Stock Tracking:** Track stock levels and receive alerts for low stock.
+- **📝 Order Processing:** Manage orders and update inventory accordingly.
+- **🔗 RESTful APIs:** Expose endpoints for seamless integration with other systems.
+- **🐳 Containerization:** Dockerized for easy deployment and scalability.
+- **📚 API Documentation:** Swagger UI for interactive API documentation and testing.
+- **💾 Databases:** PostgreSQL and MongoDB for reliable and scalable data storage.
+- **🔒 Security:** Keycloak OAuth 2.0 for secure authentication and authorization.
+- **🚦 Fault Tolerance:** Resilience4J for circuit-breaker patterns and fallback mechanisms.
+- **📧 Email Notifications:** Mailtrap for testing email notifications.
 
+---
 
+## 🛠️ Technologies Used
 
+- **Backend Framework:** ![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)
+- **Programming Language:** ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+- **Databases:** ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
+- **Containerization:** ![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
+- **API Documentation:** ![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)
+- **API Testing:** ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white)
+- **Security:** ![Keycloak](https://img.shields.io/badge/Keycloak-FF6C37?style=for-the-badge&logo=keycloak&logoColor=white)
+- **IDE:** ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJ_IDEA-000000?style=for-the-badge&logo=intellij-idea&logoColor=white)
+- **Version Control:** ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
+---
+
+## 🚀 How to Run
+
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/Deeppatel91/InventoryManagementApplication-UsingSpringBoot.git
+   cd InventoryManagementApplication-UsingSpringBoot
