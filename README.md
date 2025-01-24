@@ -49,10 +49,3 @@ This project demonstrates a **containerized network environment** utilizing **Do
 - **Version Control:** ![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)
 
 ---
-
-## 🚀 How to Run
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/Deeppatel91/InventoryManagementApplication-UsingSpringBoot.git
-   cd InventoryManagementApplication-UsingSpringBoot
